@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
+    <script src="https://recast-api.donmccurdy.com/aframe-inspector-plugin-recast.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+
+    <script src="./rotation.js"></script>
+    <script src="./camfollow.js"></script>
+    <script src="./arrow.js"></script>
+    <script src="/collider.js"></script>
+    <script src="/target.js"></script>
+    <script src="/game.js"></script>
+
+</head>
+<body>
+    <a-scene id="scene" inspector-plugin-recast>
+        
+        <a-entity id="environment" environment="preset: arches; skyType:gradient; lighting:point" position="0 0 0" terrain-rotation-reader target-ring>
+        </a-entity>
+
+          <!--Asset Management        animation-mixer="" -->
+      <a-assets timeout="10000">        
+
+        <a-asset-item
+          id="flying_bird"
+          src="./flying_bird/scene.gltf"
+
+          
+
+        ></a-asset-item>
+      </a-assets>
+
+      <a-entity
+      id="bird"
+      gltf-model="#flying_bird"
+      position="0 0 0"
+      scale="150 150 150"
+      rotation="180 -90 150"
+      dynamic-body="mass: 0"
+      bullets
+      plane-rotation-reader 
+      game-play
+      ></a-entity>
+      
+      <a-entity arrows></a-entity>
+    
+
+    
+
+      <a-entity id="camera" look-controls camera position="0 2 20" plane-rotation-reader></a-entity>
+
+       
+
+      <a-cursor></a-cursor>
+
+      <a-plane id="ground" repeat="5 5" position="0 1 0" rotation="-90 0 0" height="200" width="200" color="#FBF2D4"
+      static-body visible="false">
+    </a-plane>
+      </a-entity>
+
+
+<!--Score-->
+<a-entity id="header" position="1 -4 0">
+      <a-entity position="30.5 21.5 0">
+        <a-entity
+          position=""
+          text="font: exo2bold; align: center; width: 40; color: black; value: SCORE"
+        ></a-entity>
+        <a-entity
+          id="score"
+          position="0 -2 0"
+          text="font: exo2bold; align: center; width: 40; color: black; value: 0"
+        ></a-entity>
+      </a-entity>
+    </a-entity>
+
+    </a-scene>
+
+
+
+
+</body>
+
+</html>
